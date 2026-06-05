@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pawani Kawasara | Academic & Career Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #07090f;
+    --bg2: #0e1118;
+    --bg3: #141720;
+    --glass: rgba(255,255,255,0.04);
+    --glass-border: rgba(255,255,255,0.08);
+    --accent: #6ee7f7;
+    --accent2: #a78bfa;
+    --accent3: #34d399;
+    --text: #e8eaf0;
+    --muted: #8a8f9e;
+    --font-head: 'Syne', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ── CANVAS BG ── */
+  #bg-canvas {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 0; pointer-events: none; opacity: 0.55;
+  }
+
+  /* ── GLOW ORBS ── */
+  .orb {
+    position: fixed; border-radius: 50%; filter: blur(90px);
+    pointer-events: none; z-index: 0; opacity: 0.18;
+  }
+  .orb-1 { width: 500px; height: 500px; background: #6ee7f7; top: -150px; right: -100px; animation: drift 18s ease-in-out infinite alternate; }
+  .orb-2 { width: 400px; height: 400px; background: #a78bfa; bottom: 10%; left: -100px; animation: drift 22s ease-in-out infinite alternate-reverse; }
+  .orb-3 { width: 300px; height: 300px; background: #34d399; top: 40%; left: 40%; animation: drift 26s ease-in-out infinite alternate; }
+
+  @keyframes drift { 0% { transform: translate(0,0); } 100% { transform: translate(40px, 30px); } }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.25rem 4rem;
+    background: rgba(7, 9, 15, 0.7);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--glass-border);
+    transition: all 0.3s;
+  }
+  .nav-brand {
+    font-family: var(--font-head); font-size: 1.1rem; font-weight: 800;
+    letter-spacing: 0.1em; color: var(--accent); text-decoration: none;
+    text-transform: uppercase;
+  }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.82rem; font-weight: 500; letter-spacing: 0.08em;
+    color: var(--muted); text-decoration: none; text-transform: uppercase;
+    position: relative; transition: color 0.3s;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 1px;
+    background: var(--accent); transform: scaleX(0); transition: transform 0.3s;
+  }
+  .nav-links a:hover { color: var(--text); }
+  .nav-links a:hover::after { transform: scaleX(1); }
+
+  /* ── SECTIONS ── */
+  section { position: relative; z-index: 1; }
+
+  /* ── HERO ── */
+  #home {
+    min-height: 100vh; display: flex; align-items: center;
+    padding: 8rem 4rem 4rem;
+    background: radial-gradient(ellipse 80% 60% at 70% 0%, rgba(110,231,247,0.07) 0%, transparent 70%),
+                radial-gradient(ellipse 60% 50% at 0% 80%, rgba(167,139,250,0.07) 0%, transparent 70%);
+  }
+  .hero-inner {
+    max-width: 1100px; margin: auto; width: 100%;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+  }
+  .hero-tag {
+    display: inline-block; font-size: 0.72rem; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--accent);
+    border: 1px solid rgba(110,231,247,0.3); border-radius: 100px;
+    padding: 0.35rem 1rem; margin-bottom: 1.5rem;
+    background: rgba(110,231,247,0.06);
+  }
+  h1.hero-name {
+    font-family: var(--font-head); font-size: clamp(2.8rem, 5vw, 4.2rem);
+    font-weight: 800; line-height: 1.05; letter-spacing: -0.02em;
+    color: #fff; margin-bottom: 0.6rem;
+  }
+  h1.hero-name span { color: var(--accent); }
+  .hero-sub {
+    font-size: 1rem; color: var(--muted); font-weight: 300;
+    margin-bottom: 1.8rem; line-height: 1.7;
+  }
+  .hero-bio {
+    font-size: 0.95rem; color: #9da3b4; line-height: 1.8;
+    margin-bottom: 2.2rem;
+  }
+  .hero-badges { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 2.5rem; }
+  .badge {
+    font-size: 0.76rem; font-weight: 500; padding: 0.4rem 0.9rem;
+    border-radius: 100px; border: 1px solid;
+    backdrop-filter: blur(10px); letter-spacing: 0.04em;
+  }
+  .badge-teal { background: rgba(110,231,247,0.08); border-color: rgba(110,231,247,0.25); color: var(--accent); }
+  .badge-purple { background: rgba(167,139,250,0.08); border-color: rgba(167,139,250,0.25); color: var(--accent2); }
+  .badge-green { background: rgba(52,211,153,0.08); border-color: rgba(52,211,153,0.25); color: var(--accent3); }
+
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary-custom {
+    font-family: var(--font-body); font-size: 0.85rem; font-weight: 500;
+    padding: 0.75rem 1.8rem; border-radius: 100px;
+    background: linear-gradient(135deg, var(--accent), #38bdf8);
+    color: #07090f; text-decoration: none; letter-spacing: 0.06em;
+    transition: all 0.3s; border: none; cursor: pointer;
+    text-transform: uppercase;
+  }
+  .btn-primary-custom:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(110,231,247,0.3); }
+  .btn-outline-custom {
+    font-family: var(--font-body); font-size: 0.85rem; font-weight: 500;
+    padding: 0.75rem 1.8rem; border-radius: 100px;
+    background: transparent; color: var(--text);
+    border: 1px solid var(--glass-border); text-decoration: none;
+    letter-spacing: 0.06em; transition: all 0.3s;
+    text-transform: uppercase;
+  }
+  .btn-outline-custom:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ── PHOTO SIDE ── */
+  .hero-photo-wrap {
+    display: flex; justify-content: center; align-items: center; position: relative;
+  }
+  .photo-ring {
+    width: 320px; height: 320px; border-radius: 50%;
+    border: 2px solid rgba(110,231,247,0.25);
+    display: flex; align-items: center; justify-content: center;
+    position: relative; animation: spin-ring 20s linear infinite;
+  }
+  @keyframes spin-ring {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  .photo-ring-dot {
+    width: 10px; height: 10px; background: var(--accent);
+    border-radius: 50%; position: absolute; top: 10px; left: 50%;
+    transform: translateX(-50%); box-shadow: 0 0 10px var(--accent);
+  }
+  .photo-inner {
+    width: 270px; height: 270px; border-radius: 50%;
+    overflow: hidden; background: var(--bg3);
+    border: 3px solid rgba(255,255,255,0.1);
+    animation: spin-ring 20s linear infinite reverse;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 5rem; color: var(--muted);
+  }
+  .photo-inner img { width: 100%; height: 100%; object-fit: cover; }
+
+  /* ── SECTION WRAPPER ── */
+  .section-wrap { max-width: 1100px; margin: auto; padding: 6rem 4rem; }
+  .sec-label {
+    font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 0.8rem;
+  }
+  .sec-title {
+    font-family: var(--font-head); font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 700; color: #fff; margin-bottom: 3rem;
+    letter-spacing: -0.02em;
+  }
+  .sec-title span { color: var(--accent); }
+
+  /* ── GLASS CARD ── */
+  .glass-card {
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 2rem;
+    transition: border-color 0.3s, transform 0.3s;
+    backdrop-filter: blur(10px);
+  }
+  .glass-card:hover { border-color: rgba(110,231,247,0.2); transform: translateY(-4px); }
+  .card-icon {
+    width: 44px; height: 44px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; margin-bottom: 1.2rem;
+  }
+  .icon-teal { background: rgba(110,231,247,0.12); color: var(--accent); }
+  .icon-purple { background: rgba(167,139,250,0.12); color: var(--accent2); }
+  .icon-green { background: rgba(52,211,153,0.12); color: var(--accent3); }
+
+  .card-title {
+    font-family: var(--font-head); font-size: 1.05rem; font-weight: 700;
+    color: #fff; margin-bottom: 1.2rem; letter-spacing: 0.02em;
+  }
+
+  /* ── TIMELINE ── */
+  .timeline-item {
+    padding-left: 1.4rem; border-left: 1px solid var(--glass-border);
+    margin-bottom: 1.5rem; position: relative;
+  }
+  .timeline-item::before {
+    content: ''; position: absolute; left: -4px; top: 6px;
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--accent); box-shadow: 0 0 8px var(--accent);
+  }
+  .timeline-item h5 { font-family: var(--font-head); font-size: 0.95rem; font-weight: 600; color: #fff; margin-bottom: 0.2rem; }
+  .timeline-item p { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+
+  /* ── SKILLS LIST ── */
+  .skill-item {
+    display: flex; align-items: flex-start; gap: 0.7rem;
+    padding: 0.9rem 0; border-bottom: 1px solid var(--glass-border);
+    font-size: 0.88rem;
+  }
+  .skill-item:last-child { border-bottom: none; }
+  .skill-dot {
+    width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; margin-top: 6px;
+  }
+  .dot-teal { background: var(--accent); }
+  .dot-purple { background: var(--accent2); }
+  .dot-green { background: var(--accent3); }
+  .skill-label { color: var(--muted); font-size: 0.8rem; margin-right: 0.4rem; }
+
+  /* ── SWOT ── */
+  .swot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .swot-item {
+    border-radius: 14px; padding: 1.5rem;
+    border: 1px solid;
+  }
+  .swot-item h5 { font-family: var(--font-head); font-size: 0.82rem; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.7rem; font-weight: 700; }
+  .swot-item p { font-size: 0.82rem; line-height: 1.6; }
+  .swot-s { background: rgba(52,211,153,0.07); border-color: rgba(52,211,153,0.2); }
+  .swot-s h5 { color: var(--accent3); }
+  .swot-s p { color: #6ee9b9; }
+  .swot-w { background: rgba(248,113,113,0.07); border-color: rgba(248,113,113,0.2); }
+  .swot-w h5 { color: #f87171; }
+  .swot-w p { color: #fca5a5; }
+  .swot-o { background: rgba(251,191,36,0.07); border-color: rgba(251,191,36,0.2); }
+  .swot-o h5 { color: #fbbf24; }
+  .swot-o p { color: #fcd34d; }
+  .swot-t { background: rgba(167,139,250,0.07); border-color: rgba(167,139,250,0.2); }
+  .swot-t h5 { color: var(--accent2); }
+  .swot-t p { color: #c4b5fd; }
+
+  /* ── GOALS ── */
+  .goal-card {
+    border-radius: 20px; padding: 2rem;
+    border: 1px solid var(--glass-border);
+    background: var(--glass);
+    position: relative; overflow: hidden;
+  }
+  .goal-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  }
+  .goal-short::before { background: linear-gradient(90deg, var(--accent), transparent); }
+  .goal-long::before { background: linear-gradient(90deg, var(--accent2), transparent); }
+  .goal-num {
+    font-family: var(--font-head); font-size: 3.5rem; font-weight: 800;
+    color: rgba(255,255,255,0.04); position: absolute; top: 1rem; right: 1.5rem;
+    line-height: 1; letter-spacing: -0.05em;
+  }
+  .goal-type { font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 0.7rem; }
+  .goal-card h5 { font-family: var(--font-head); font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 0.8rem; }
+  .goal-card p { font-size: 0.9rem; color: #9da3b4; line-height: 1.75; }
+
+  /* ── GAP TABLE ── */
+  .table-responsive-container { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .gap-table { width: 100%; border-collapse: collapse; margin-top: 1rem; min-width: 600px; }
+  .gap-table th {
+    font-family: var(--font-head); font-size: 0.78rem; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 0.9rem 1.2rem; border-bottom: 1px solid var(--glass-border);
+    color: var(--muted); text-align: left;
+  }
+  .gap-table td {
+    padding: 1rem 1.2rem; font-size: 0.88rem; color: #9da3b4;
+    line-height: 1.6; border-bottom: 1px solid var(--glass-border);
+    vertical-align: top;
+  }
+  .gap-table tr:last-child td { border-bottom: none; }
+
+  /* ── YEAR PLAN ── */
+  .year-track { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--glass-border); border-radius: 16px; overflow: hidden; }
+  .year-item { background: var(--bg2); padding: 1.8rem; }
+  .year-num { font-family: var(--font-head); font-size: 2.5rem; font-weight: 800; margin-bottom: 0.4rem; }
+  .year-1 { color: rgba(110,231,247,0.15); }
+  .year-2 { color: rgba(52,211,153,0.15); }
+  .year-3 { color: rgba(167,139,250,0.15); }
+  .year-label { font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 1rem; }
+  .y1 { color: var(--accent); }
+  .y2 { color: var(--accent3); }
+  .y3 { color: var(--accent2); }
+  .year-item p { font-size: 0.87rem; color: var(--muted); line-height: 1.7; }
+
+  /* ── CONTACT ── */
+  #contact { background: linear-gradient(180deg, transparent 0%, rgba(110,231,247,0.04) 100%); }
+  .contact-inner { text-align: center; max-width: 600px; margin: auto; }
+  .contact-links { display: flex; flex-direction: column; gap: 1rem; margin-top: 2.5rem; align-items: center; }
+  .contact-link {
+    display: flex; align-items: center; gap: 1rem;
+    font-size: 0.9rem; color: var(--muted);
+    background: var(--glass); border: 1px solid var(--glass-border);
+    border-radius: 100px; padding: 0.8rem 1.8rem;
+    text-decoration: none; transition: all 0.3s; min-width: 280px;
+  }
+  .contact-link:hover { border-color: var(--accent); color: var(--text); transform: translateY(-2px); }
+  .contact-link i { color: var(--accent); width: 20px; text-align: center; }
+
+  .footer-note {
+    text-align: center; padding: 2rem; font-size: 0.78rem;
+    color: rgba(255,255,255,0.2); letter-spacing: 0.06em;
+    border-top: 1px solid var(--glass-border); position: relative; z-index: 1;
+  }
+
+  /* ── DIVIDER ── */
+  .section-divider { height: 1px; background: var(--glass-border); max-width: 1100px; margin: 0 auto; }
+
+  /* ── GRID HELPERS ── */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem; }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .delay-1 { transition-delay: 0.1s; }
+  .delay-2 { transition-delay: 0.2s; }
+  .delay-3 { transition-delay: 0.3s; }
+
+  @media (max-width: 900px) {
+    nav { padding: 1.2rem 2rem; }
+    .nav-links { gap: 1.5rem; }
+    .hero-inner { grid-template-columns: 1fr; text-align: center; }
+    .hero-photo-wrap { order: -1; }
+    .hero-badges { justify-content: center; }
+    .hero-actions { justify-content: center; }
+    .section-wrap { padding: 4rem 2rem; }
+    .grid-2, .grid-3, .swot-grid { grid-template-columns: 1fr; }
+    .year-track { grid-template-columns: 1fr; }
+    .photo-ring, .photo-inner { width: 220px; height: 220px; }
+  }
+  @media (max-width: 600px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    #home { padding: 7rem 1.5rem 3rem; }
+    .section-wrap { padding: 3rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<canvas id="bg-canvas"></canvas>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
+
+<nav>
+  <a class="nav-brand" href="#home">PK Portfolio</a>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#present-state">Present State</a></li>
+    <li><a href="#achievements">Achievements</a></li>
+    <li><a href="#goal-setting">Goal Setting</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section id="home">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-tag">B.Sc. Hons in Industrial Mathematics · Rajarata University</div>
+      <h1 class="hero-name">Pawani<br><span>Kawasara.</span></h1>
+      <p class="hero-sub">Honours Undergraduate (4th Year) · Future Full-Stack Engineer & Industrial Mathematician</p>
+      <p class="hero-bio">Dedicated to bridging advanced industrial mathematics and computational science with full-stack technology. Driven by a track record of academic excellence (GPA 3.2+) to architect data-driven software solutions.</p>
+      
+      <!-- Core Values Block -->
+      <div style="margin-bottom: 1.2rem;">
+        <span style="font-size: 0.75rem; text-transform: uppercase; color: var(--accent); letter-spacing: 0.1em; display: block; margin-bottom: 0.4rem;">Core Values:</span>
+        <div class="hero-badges" style="margin-bottom: 0;">
+          <span class="badge badge-teal">Integrity</span>
+          <span class="badge badge-purple">Continuous Learning</span>
+          <span class="badge badge-green">Collaboration</span>
+          <span class="badge badge-teal">Excellence</span>
+        </div>
+      </div>
+
+      <!-- General Badges -->
+      <div class="hero-badges">
+        <span class="badge badge-purple">Astronomy</span>
+        <span class="badge badge-green">Zero Plastic Community</span>
+      </div>
+      
+      <div class="hero-actions">
+        <a href="#goal-setting" class="btn-primary-custom">View Goals & Plan</a>
+        <a href="#contact" class="btn-outline-custom">Get In Touch</a>
+      </div>
+    </div>
+    <div class="hero-photo-wrap">
+      <div class="photo-ring">
+        <div class="photo-ring-dot"></div>
+          <div class="photo-inner" style="animation: none; background: transparent;">
+            <img src="/images/pawani.jpg" alt="Pawani Kawasara" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; transform: none;">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ═══ PRESENT STATE ═══ -->
+<section id="present-state">
+  <div class="section-wrap">
+    <p class="sec-label reveal">01 · Assessment Block</p>
+    <h2 class="sec-title reveal delay-1">Present State <span>Analysis.</span></h2>
+
+    <div class="grid-2" style="margin-bottom: 1.5rem;">
+
+      <!-- Education & Academic Qualifications -->
+      <div class="glass-card reveal">
+        <div class="card-icon icon-teal"><i class="fa-solid fa-graduation-cap"></i></div>
+        <p class="card-title">Educational & Professional Qualifications</p>
+        <div class="timeline-item">
+          <h5>B.Sc. Honours in Industrial Mathematics (4th Year)</h5>
+          <p>Rajarata University of Sri Lanka · 2021 – Present</p>
+          <p style="font-size: 0.82rem; color: var(--accent); margin-top: 0.2rem;"><i class="fa-solid fa-chart-line me-1"></i> Current Academic Standing: GPA 3.2+</p>
+          <p style="font-size: 0.8rem; color: var(--muted);">Selected for the specialized 4-year Honours degree track based on high academic milestones.</p>
+        </div>
+        <div class="timeline-item">
+          <h5>GCE Advanced Level (Common Stream)</h5>
+          <p>Physics: C · Combined Maths: C · ICT: C · 2020</p>
+        </div>
+        <div class="timeline-item">
+          <h5>GCE Ordinary Level</h5>
+          <p>H Kirama Dammananda National School · 8 A's & 1 C · 2017</p>
+        </div>
+      </div>
+
+      <!-- Vocational Qualifications & Experiences -->
+      <div class="glass-card reveal delay-1">
+        <div class="card-icon icon-purple"><i class="fa-solid fa-briefcase"></i></div>
+        <p class="card-title">Vocational Foundations & Experience</p>
+        <div class="timeline-item">
+          <h5>Self-Learned Vocational Foundations</h5>
+          <p>Full-stack web architectures, applied algorithmic flows, and Python/Flask development environments.</p>
+        </div>
+        <div class="timeline-item">
+          <h5>Active Community Leader & Volunteer</h5>
+          <p>Society of Physics and Astronomy (2023–Present) & Zero Plastic Community (2025–Present) at Rajarata University.</p>
+        </div>
+        <div class="timeline-item">
+          <h5>School Prefect Board & Cultural Teams</h5>
+          <p>Served as an official school prefect (2019-2020), member of the School Western Band, and traditional dancing teams.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Skills & Competencies Grid -->
+    <div class="glass-card reveal" style="margin-bottom: 1.5rem;">
+      <div class="card-icon icon-green"><i class="fa-solid fa-bolt"></i></div>
+      <p class="card-title">Detailed Skills & Competencies</p>
+      <div class="grid-3" style="gap: 1rem;">
+        <div>
+          <h5 style="font-size:0.9rem; color:var(--accent); margin-bottom:0.4rem;">Technical Capabilities</h5>
+          <p style="font-size:0.85rem; color:var(--muted); line-height:1.6;">Computer application systems, industrial computing workflows, and algorithmic tech-stack conceptualization.</p>
+        </div>
+        <div>
+          <h5 style="font-size:0.9rem; color:var(--accent3); margin-bottom:0.4rem;">Analytical Competencies</h5>
+          <p style="font-size:0.85rem; color:var(--muted); line-height:1.6;">Advanced mathematical modeling, structured statistical analysis, and deep scientific query troubleshooting.</p>
+        </div>
+        <div>
+          <h5 style="font-size:0.9rem; color:var(--accent2); margin-bottom:0.4rem;">Soft Core Skills</h5>
+          <p style="font-size:0.85rem; color:var(--muted); line-height:1.6;">Cross-functional team leadership, collaborative project coordination, adaptive articulation, and structural design logic.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Personality Assessment & Hobbies -->
+    <div class="glass-card reveal" style="margin-bottom: 1.5rem;">
+      <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.8rem;">
+        <div class="card-icon icon-teal" style="margin-bottom: 0;"><i class="fa-solid fa-brain"></i></div>
+        <p class="card-title" style="margin-bottom: 0;">Personality Profiling & Key Traits</p>
+      </div>
+      <p style="font-size: 0.9rem; color: #9da3b4; line-height: 1.8; margin-bottom: 0.8rem;">
+        <strong style="color: var(--text);">Personality Metrics (Career Key & MBTI Frameworks):</strong> Mentally mapped as a highly logical, detail-structured, and civic-conscious individual. Possess a natural affinity for clean analytics balanced with creative problem troubleshooting, making me ideal for adaptive structural tech lifecycles.
+      </p>
+      <p style="font-size: 0.9rem; color: #9da3b4; line-height: 1.8;">
+        <strong style="color: var(--text);">Interests & Hobbies:</strong> Investigating next-generation technologies, environmental conservation volunteering, tracking cosmic systems/astronomy, and classical dancing.
+      </p>
+    </div>
+
+    <!-- SWOT Analysis Grid -->
+    <p class="sec-label reveal" style="margin-bottom: 1rem;">Strategic Self-Assessment</p>
+    <div class="swot-grid reveal delay-1">
+      <div class="swot-item swot-s">
+        <h5>Strengths</h5>
+        <p>Strong baseline in advanced Mathematics & ICT principles, reinforced by an active university footprint and tested leadership traits.</p>
+      </div>
+      <div class="swot-item swot-w">
+        <h5>Weaknesses</h5>
+        <p>A rigorous focus on micro-level details and micro-refinement can occasionally lengthen timeline frameworks.</p>
+      </div>
+      <div class="swot-item swot-o">
+        <h5>Opportunities</h5>
+        <p>Expanding expertise in data architectures and scalable full-stack engines to capture modern industrial data tracking demands.</p>
+      </div>
+      <div class="swot-item swot-t">
+        <h5>Threats</h5>
+        <p>Fast-evolving algorithmic trends and competitive job ecosystems necessitate a non-stop loop of learning updates.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ═══ EVIDENCE & ACHIEVEMENTS GALLERY ═══ -->
+<section id="achievements" style="background: var(--bg2);">
+  <div class="section-wrap">
+    <p class="sec-label reveal">01.1 · Verified Evidence</p>
+    <h2 class="sec-title reveal delay-1">Achievements & <span>Certificates.</span></h2>
+    
+    <div class="grid-3">
+      <!-- Certificate 1: Zero Plastic -->
+      <div class="glass-card reveal">
+        <div class="card-icon icon-green"><i class="fa-solid fa-leaf"></i></div>
+        <p class="card-title" style="margin-bottom:0.5rem;">ZeroPlastic Volunteer Appreciation</p>
+        <p style="font-size: 0.8rem; color: var(--muted); margin-bottom: 1rem;">Rajarata University of Sri Lanka · Active contribution to the success of Sustain Session 3.3 webinar.</p>
+        <a href="/images/Certificate_1.jpg" target="_blank" class="btn-outline-custom" style="padding: 0.4rem 1rem; font-size: 0.75rem;">View Certificate</a>
+      </div>
+
+      <!-- Certificate 2: Leadership -->
+      <div class="glass-card reveal delay-1">
+        <div class="card-icon icon-purple"><i class="fa-solid fa-users-gear"></i></div>
+        <p class="card-title" style="margin-bottom:0.5rem;">Prefect Leadership Workshop</p>
+        <p style="font-size: 0.8rem; color: var(--muted); margin-bottom: 1rem;">Successful residential workshop participation in exploring obstacles and building leadership traits (2017).</p>
+        <a href="/images/Certificate_2.jpg" target="_blank" class="btn-outline-custom" style="padding: 0.4rem 1rem; font-size: 0.75rem;">View Certificate</a>
+      </div>
+
+      <!-- Certificate 3: School Prefect -->
+      <div class="glass-card reveal delay-2">
+        <div class="card-icon icon-teal"><i class="fa-solid fa-award"></i></div>
+        <p class="card-title" style="margin-bottom:0.5rem;">Official Prefect Board Service</p>
+        <p style="font-size: 0.8rem; color: var(--muted); margin-bottom: 1rem;">Appreciation award for valuable leadership service rendered to the school as a Prefect (2019-2020).</p>
+        <a href="/images/Certificate_3.jpg" target="_blank" class="btn-outline-custom" style="padding: 0.4rem 1rem; font-size: 0.75rem;">View Certificate</a>
+      </div>
+
+      <!-- Certificate 4: Poetry Writing -->
+      <div class="glass-card reveal">
+        <div class="card-icon icon-purple"><i class="fa-solid fa-pen-nib"></i></div>
+        <p class="card-title" style="margin-bottom:0.5rem;">Zonal Poetry Writing - 3rd Place</p>
+        <p style="font-size: 0.8rem; color: var(--muted); margin-bottom: 1rem;">Awarded 3rd Place at the Zonal/Provincial level Sinhala Language & Literature Competition 2017.</p>
+        <a href="/images/Certificate_4.jpg" target="_blank" class="btn-outline-custom" style="padding: 0.4rem 1rem; font-size: 0.75rem;">View Certificate</a>
+      </div>
+
+      <!-- Certificate 5: Athletics -->
+      <div class="glass-card reveal delay-1">
+        <div class="card-icon icon-green"><i class="fa-solid fa-person-running"></i></div>
+        <p class="card-title" style="margin-bottom:0.5rem;">75m Athletics Meet Sprint Champion</p>
+        <p style="font-size: 0.8rem; color: var(--muted); margin-bottom: 1rem;">Secured 1st Place in the Under-17 75m Sprint event at the Inter-House Track & Field Meet 2016.</p>
+        <a href="/images/Certificate_5.jpg" target="_blank" class="btn-outline-custom" style="padding: 0.4rem 1rem; font-size: 0.75rem;">View Certificate</a>
+      </div>
+
+      <!-- Certificate 6: National Sports Festival -->
+      <div class="glass-card reveal delay-2">
+        <div class="card-icon icon-teal"><i class="fa-solid fa-medal"></i></div>
+        <p class="card-title" style="margin-bottom:0.5rem;">National Sports Festival Stage 1</p>
+        <p style="font-size: 0.8rem; color: var(--muted); margin-bottom: 1rem;">Recognized regional level sports placement at the 42nd National Sports Festival (2016).</p>
+        <a href="/images/Certificate_6.jpg" target="_blank" class="btn-outline-custom" style="padding: 0.4rem 1rem; font-size: 0.75rem;">View Certificate</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ═══ GOAL SETTING ═══ -->
+<section id="goal-setting">
+  <div class="section-wrap">
+    <p class="sec-label reveal">02 · Strategic Planning</p>
+    <h2 class="sec-title reveal delay-1">Goal Setting & <span>Milestones.</span></h2>
+
+    <div class="grid-2" style="margin-bottom: 1.5rem;">
+      <div class="goal-card goal-short reveal">
+        <div class="goal-num">01</div>
+        <p class="goal-type" style="color: var(--accent);">Short-Term · SMART Model</p>
+        <h5>Graduate & Enter Tech Fields</h5>
+        <p>Conclude all academic modules successfully in B.Sc. Honours in Industrial Mathematics and transition smoothly into an enterprise software deployment or structural analytics post within 12 months.</p>
+      </div>
+      <div class="goal-card goal-long reveal delay-1">
+        <div class="goal-num">02</div>
+        <p class="goal-type" style="color: var(--accent2);">Long-Term · SAFE Model</p>
+        <h5>Full-Stack Consultant Expert</h5>
+        <p>Evolve into a senior technology systems consultant and backend architecture expert, deploying data-centric software setups that solve deep mathematical tracking hurdles.</p>
+      </div>
+    </div>
+
+    <!-- Gap Analysis Table -->
+    <div class="glass-card reveal" style="margin-bottom: 1.5rem;">
+      <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0;">
+        <div class="card-icon icon-teal" style="margin-bottom: 0;"><i class="fa-solid fa-chart-line"></i></div>
+        <p class="card-title" style="margin-bottom: 0;">Gap Analysis Metric</p>
+      </div>
+      <div class="table-responsive-container">
+        <table class="gap-table">
+          <thead>
+            <tr>
+              <th>Knowledge Gap</th>
+              <th>Skills Gap</th>
+              <th>Experience Gap</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Advanced corporate cloud network architectures and continuous delivery loops.</td>
+              <td>Production API deployment practices and custom dynamic web application layouts.</td>
+              <td>Translating lab conceptual data solutions into optimized industry commercial workflows.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 3-Year Plan Roadmap -->
+    <p class="sec-label reveal" style="margin-bottom: 1rem;">Action Plan · 3-Year Horizon</p>
+    <div class="year-track reveal delay-1">
+      <div class="year-item">
+        <div class="year-num year-1">01</div>
+        <div class="year-label y1">Year One (Final Year)</div>
+        <p>Successfully complete the B.Sc. Honours final year modules, conduct data-driven industrial mathematics research, and build high-quality portfolio prototypes.</p>
+      </div>
+      <div class="year-item">
+        <div class="year-num year-2">02</div>
+        <div class="year-label y2">Year Two</div>
+        <p>Secure full-time industrial placement as a Software Engineer or Technical Analyst, mastering cloud servers and team code maintenance (Git).</p>
+      </div>
+      <div class="year-item">
+        <div class="year-num year-3">03</div>
+        <div class="year-label y3">Year Three</div>
+        <p>Specialize in heavy application logic, linking data-oriented mathematics with modern framework engineering to step into higher project management.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ═══ CONTACT ═══ -->
+<section id="contact">
+  <div class="section-wrap">
+    <div class="contact-inner">
+      <p class="sec-label reveal">03 · Connect</p>
+      <h2 class="sec-title reveal delay-1" style="margin-bottom: 0.5rem;">Let's Connect <span>.</span></h2>
+      <p class="reveal delay-2" style="font-size: 0.9rem; color: var(--muted); margin-bottom: 0;">Feel free to reach out for opportunities, collaborations, or just a conversation.</p>
+      <div class="contact-links reveal delay-3">
+
+        <a href="https://www.linkedin.com/in/pawani-kawasara-31027a3b2?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" class="contact-link">
+          <i class="fa-brands fa-linkedin"></i>
+          Pawani Kawasara on LinkedIn
+        </a>
+
+        <a href="mailto:pawanikawasara027@gmail.com" class="contact-link">
+          <i class="fa-solid fa-envelope"></i>
+          pawanikawasara027@gmail.com
+        </a>
+        <a href="tel:0703865094" class="contact-link">
+          <i class="fa-solid fa-phone"></i>
+          0703 865 094
+        </a>
+        <div class="contact-link" style="pointer-events: none;">
+          <i class="fa-solid fa-location-dot"></i>
+          Watawala, Pahalawatta, Kirama
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="footer-note">© 2026 Pawani Kawasara · Created for Academic Assessment Purposes</div>
+
+<!-- ── SCRIPTS ── -->
+<script>
+// Particle canvas bg
+const canvas = document.getElementById('bg-canvas');
+const ctx = canvas.getContext('2d');
+let W, H, particles = [];
+
+function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+resize();
+window.addEventListener('resize', resize);
+
+function Particle() {
+  this.x = Math.random() * W;
+  this.y = Math.random() * H;
+  this.r = Math.random() * 1.5 + 0.3;
+  this.vx = (Math.random() - 0.5) * 0.3;
+  this.vy = (Math.random() - 0.5) * 0.3;
+  this.alpha = Math.random() * 0.5 + 0.1;
+  const c = ['110,231,247','167,139,250','52,211,153'];
+  this.color = c[Math.floor(Math.random() * c.length)];
+}
+
+for (let i = 0; i < 80; i++) particles.push(new Particle());
+
+function drawParticles() {
+  ctx.clearRect(0, 0, W, H);
+  particles.forEach(p => {
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(${p.color},${p.alpha})`;
+    ctx.fill();
+    p.x += p.vx; p.y += p.vy;
+    if (p.x < 0 || p.x > W) p.vx *= -1;
+    if (p.y < 0 || p.y > H) p.vy *= -1;
+  });
+  // connect nearby particles
+  for (let i = 0; i < particles.length; i++) {
+    for (let j = i + 1; j < particles.length; j++) {
+      const dx = particles[i].x - particles[j].x;
+      const dy = particles[i].y - particles[j].y;
+      const dist = Math.sqrt(dx*dx + dy*dy);
+      if (dist < 100) {
+        ctx.beginPath();
+        ctx.strokeStyle = `rgba(110,231,247,${0.05 * (1 - dist/100)})`;
+        ctx.lineWidth = 0.5;
+        ctx.moveTo(particles[i].x, particles[i].y);
+        ctx.lineTo(particles[j].x, particles[j].y);
+        ctx.stroke();
+      }
+    }
+  }
+  requestAnimationFrame(drawParticles);
+}
+drawParticles();
+
+// Scroll reveal
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.12 });
+reveals.forEach(r => observer.observe(r));
+</script>
+</body>
+</html>
